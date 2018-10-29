@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net45;</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Xyfy</Authors>
+    <Company>Xyfy</Company>
+     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Version>2.0.1</Version>
+    <Description>并发冲突问题</Description>
+    <AssemblyName>Xyfy.Helper</AssemblyName>
+    <RootNamespace>Xyfy.Helper</RootNamespace>
+  </PropertyGroup>
+
+</Project>
