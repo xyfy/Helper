@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Xyfy.Helper
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class RSAHelper
     {
         private readonly RSA _privateKeyRsaProvider;

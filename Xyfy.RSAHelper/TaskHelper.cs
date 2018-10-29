@@ -4,14 +4,24 @@ using System.Threading.Tasks;
 
 namespace Xyfy.Helper
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TaskHelper
     {
+        /// <summary>
+        /// 
+        /// </summary>
         event EventHandler<AggregateExceptionArgs> AggregateExceptionCatched;
 
         private readonly TaskFactory factory;
 
         private readonly Action<Exception> logAction;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="errorLogAction"></param>
         public TaskHelper(Action<Exception> errorLogAction = null)
         {
             logAction = errorLogAction ?? Console.WriteLine;
@@ -57,17 +67,34 @@ namespace Xyfy.Helper
         {
             return ContinueWith(factory.StartNew(action, cancellationToken));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="creationOptions"></param>
+        /// <returns></returns>
         public Task StartNew(Action action, TaskCreationOptions creationOptions)
         {
             return ContinueWith(factory.StartNew(action, creationOptions));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="cancellationToken"></param>
+        /// <param name="creationOptions"></param>
+        /// <param name="scheduler"></param>
+        /// <returns></returns>
         public Task StartNew(Action action, CancellationToken cancellationToken,
             TaskCreationOptions creationOptions, TaskScheduler scheduler)
         {
             return ContinueWith(factory.StartNew(action, cancellationToken, creationOptions, scheduler));
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Program_AggregateExceptionCatched(object sender, AggregateExceptionArgs e)
         {
             foreach (Exception item in e.AggregateException.InnerExceptions)
