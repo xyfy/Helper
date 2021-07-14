@@ -10,7 +10,7 @@
     <Version>3.0.0</Version>
     <Description>加入TaskHelper</Description>
     <AssemblyName>Xyfy.Helper</AssemblyName>
-    <RootNamespace>Xyfy.Helper</RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
     <DocumentationFile>bin\Release\net45\Xyfy.Helper.xml</DocumentationFile>
