@@ -1,0 +1,23 @@
+name: build master
+# Create dev doc index,send to ALGOLIA
+# auto create when doc changed
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: git pull
+      uses: actions/checkout@v3
+    - run: git checkout main
+    - name: setting dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: |
+          6.0.x
+    - name: build
+      run: dotnet build
