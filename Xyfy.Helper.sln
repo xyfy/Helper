@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperTest", "HelperTest\HelperTest.csproj", "{18D708C6-F892-4FCE-BCE3-1EA47DFFB03F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xyfy.Helper", "Xyfy.Helper\Xyfy.Helper.csproj", "{A46A7AD5-661B-4F9E-A017-8F5CD915A160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyfy.HelperTests", "Xyfy.HelperTests\Xyfy.HelperTests.csproj", "{EFC1C553-A4A7-47F9-96EB-AD10D7F1CF16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18D708C6-F892-4FCE-BCE3-1EA47DFFB03F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18D708C6-F892-4FCE-BCE3-1EA47DFFB03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18D708C6-F892-4FCE-BCE3-1EA47DFFB03F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18D708C6-F892-4FCE-BCE3-1EA47DFFB03F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A46A7AD5-661B-4F9E-A017-8F5CD915A160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A46A7AD5-661B-4F9E-A017-8F5CD915A160}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A46A7AD5-661B-4F9E-A017-8F5CD915A160}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46A7AD5-661B-4F9E-A017-8F5CD915A160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFC1C553-A4A7-47F9-96EB-AD10D7F1CF16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFC1C553-A4A7-47F9-96EB-AD10D7F1CF16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFC1C553-A4A7-47F9-96EB-AD10D7F1CF16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFC1C553-A4A7-47F9-96EB-AD10D7F1CF16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

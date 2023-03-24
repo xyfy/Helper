@@ -1,3 +1,4 @@
+using System;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -7,12 +8,12 @@ namespace Xyfy.Helper
 {
     public static class ExpressionHelper
     {
-        protected static string CharCodeAt(this string character, int index)
+        internal static string CharCodeAt(this string character, int index)
         {
             return (character[index] + "").CharCodeAt();
         }
 
-        protected static string CharCodeAt(this string character)
+        internal static string CharCodeAt(this string character)
         {
             string coding = "";
             for (int i = 0; i < character.Length; i++)
