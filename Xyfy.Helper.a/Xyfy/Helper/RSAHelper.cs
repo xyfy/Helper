@@ -10,8 +10,8 @@ namespace Xyfy.Helper
     /// </summary>
     public partial class RSAHelper
     {
-        private readonly RSA _privateKeyRsaProvider;
-        private readonly RSA _publicKeyRsaProvider;
+        private readonly RSA? _privateKeyRsaProvider;
+        private readonly RSA? _publicKeyRsaProvider;
         private readonly Encoding _encoding;
         private readonly HashAlgorithmName _hashAlgorithmName;
         /// <summary>
@@ -21,7 +21,7 @@ namespace Xyfy.Helper
         /// <param name="encoding">编码类型</param>
         /// <param name="privateKey">私钥</param>
         /// <param name="publicKey">公钥</param>
-        public RSAHelper(RSAType rsaType, Encoding encoding, string privateKey, string publicKey = null)
+        public RSAHelper(RSAType rsaType, Encoding encoding, string privateKey, string? publicKey = null)
         {
             _encoding = encoding;
             if (!string.IsNullOrEmpty(privateKey))
@@ -51,7 +51,9 @@ namespace Xyfy.Helper
             byte[] signData;
             lock (LockObj)
             {
+#pragma warning disable CS8602
                 signData = _privateKeyRsaProvider.SignData(data, _hashAlgorithmName, RSASignaturePadding.Pkcs1);
+#pragma warning restore CS8602
             }
             return Convert.ToBase64String(signData);
         }
@@ -69,8 +71,10 @@ namespace Xyfy.Helper
             byte[] signBytes = Convert.FromBase64String(signedString);
             lock (LockObj)
             {
+#pragma warning disable CS8602
                 result = _publicKeyRsaProvider.VerifyData(dataBytes, signBytes, _hashAlgorithmName,
                     RSASignaturePadding.Pkcs1);
+#pragma warning restore CS8602
             }
 
             return result;
@@ -116,12 +120,13 @@ namespace Xyfy.Helper
 
         private int GetIntegerSize(BinaryReader binr)
         {
-            byte bt = binr.ReadByte();
+            byte bt = 0;
+            int count = 0;
+            bt = binr.ReadByte();
             if (bt != 0x02)
                 return 0;
             bt = binr.ReadByte();
 
-            int count;
             if (bt == 0x81)
                 count = binr.ReadByte();
             else
@@ -179,10 +184,10 @@ namespace Xyfy.Helper
         }
 
 
-        private RSA DecodePemPublicKey(String pemstr)
+        private RSA? DecodePemPublicKey(String pemstr)
         {
             var pkcs8Publickkey = Convert.FromBase64String(pemstr);
-            RSA rsa = DecodeRsaPublicKey(pkcs8Publickkey);
+            RSA? rsa = DecodeRsaPublicKey(pkcs8Publickkey);
             return rsa;
         }
 
@@ -234,7 +239,7 @@ namespace Xyfy.Helper
         }
 
 
-        private RSA DecodeRsaPublicKey(byte[] publickey)
+        private RSA? DecodeRsaPublicKey(byte[] publickey)
         {
             // encoded OID sequence for  PKCS #1 rsaEncryption szOID_RSA_RSA = "1.2.840.113549.1.1.1"
             byte[] SeqOID = { 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01, 0x05, 0x00 };

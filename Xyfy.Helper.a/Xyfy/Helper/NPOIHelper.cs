@@ -29,13 +29,13 @@ namespace Xyfy.Helper
             /// </summary>
             xlsx
         }
-        private IWorkbook workbook;
+        private IWorkbook? workbook;
         private string sheetName;
-        private ISheet sheet;
+        private ISheet? sheet;
         /// <summary>
         /// 文件路径
         /// </summary>
-        private readonly string filePath;
+        private readonly string? filePath;
         private readonly string[] propertyNames;
         private readonly int[] maxWidths;
         private readonly ExcelVersion version;
@@ -70,7 +70,7 @@ namespace Xyfy.Helper
         /// <param name="propertyNames">需要导出的字段名称</param>
         /// <param name="headers">标题名</param>
         ///<param name="sheetName"></param>
-        public NPOIHelper(string filePath, string[] propertyNames, string[] headers = null, string sheetName = "sheet1")
+        public NPOIHelper(string filePath, string[] propertyNames, string[]? headers = null, string sheetName = "sheet1")
         {
             this.filePath = filePath;
             FileInfo fi = new FileInfo(filePath);
@@ -103,7 +103,7 @@ namespace Xyfy.Helper
         /// <param name="headers">标题名</param>
         ///<param name="sheetName">sheet名</param>
         /// <param name="version">需要导出的excel版本</param>
-        public NPOIHelper(string[] propertyNames, string[] headers = null, string sheetName = "sheet1", ExcelVersion version = ExcelVersion.xlsx)
+        public NPOIHelper(string[] propertyNames, string[]? headers = null, string sheetName = "sheet1", ExcelVersion version = ExcelVersion.xlsx)
         {
             this.version = version;
             this.propertyNames = propertyNames;
@@ -141,7 +141,7 @@ namespace Xyfy.Helper
         /// </summary>
         /// <param name="rowIndex"></param>
         /// <returns></returns>
-        private IRow GetRow(int rowIndex)
+        private IRow? GetRow(int rowIndex)
         {
             var row = sheet?.GetRow(rowIndex) ?? sheet?.CreateRow(rowIndex);
             return row;
@@ -152,7 +152,7 @@ namespace Xyfy.Helper
         /// <param name="rowIndex"></param>
         /// <param name="colIndex"></param>
         /// <returns></returns>
-        private ICell GetCell(int rowIndex, int colIndex)
+        private ICell? GetCell(int rowIndex, int colIndex)
         {
             var row = GetRow(rowIndex);
             var cell = row?.GetCell(colIndex);
@@ -185,7 +185,7 @@ namespace Xyfy.Helper
         /// <param name="filePath"></param>
         public void WriteToFile(string filePath)
         {
-            FileStream fs = null;
+            FileStream? fs = null;
             try
             {
                 fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write);

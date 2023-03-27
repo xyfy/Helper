@@ -22,7 +22,7 @@ namespace Xyfy.Helper
         /// 
         /// </summary>
         /// <param name="errorLogAction"></param>
-        public TaskHelper(Action<Exception> errorLogAction = null)
+        public TaskHelper(Action<Exception>? errorLogAction = null)
         {
             logAction = errorLogAction ?? Console.WriteLine;
             AggregateExceptionCatched += new EventHandler<AggregateExceptionArgs>(Program_AggregateExceptionCatched);

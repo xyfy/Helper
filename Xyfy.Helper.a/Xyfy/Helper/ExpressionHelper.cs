@@ -43,7 +43,7 @@ namespace Xyfy.Helper
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static string HashToAnchorString(this string str)
+        public static string? HashToAnchorString(this string str)
         {
             var slug = str.Trim().ToLower();
             slug = Regex.Replace(slug, @"[\s,.[\]{}()/]+", "-");
@@ -68,7 +68,7 @@ namespace Xyfy.Helper
         /// <param name="t"></param>
         /// <param name="selector"></param>
         /// <param name="newValue"></param>
-        public static void SetPropertyValue<T, TProperty>(this T t, Expression<Func<T, TProperty>> selector, TProperty newValue)
+        public static void SetPropertyValue<T, TProperty>(this T t, Expression<Func<T, TProperty?>> selector, TProperty? newValue)
         {
             var m = selector.Compile()(t);
             var valueType = typeof(TProperty);
@@ -97,7 +97,7 @@ namespace Xyfy.Helper
             {
                 return;
             }
-            PropertyInfo p = type?.GetProperty(name);
+            PropertyInfo? p = type?.GetProperty(name);
             if (p == null)
             {
                 throw new ArgumentException(name);
