@@ -70,18 +70,29 @@ namespace Xyfy.Helper
         /// <param name="newValue"></param>
         public static void SetPropertyValue<T, TProperty>(this T t, Expression<Func<T, TProperty>> selector, TProperty newValue)
         {
-            var m = selector.Compile()(t);
             var valueType = typeof(TProperty);
+            ParameterExpression param_val = Expression.Parameter(typeof(T), "x");
             var valueExpress = Expression.Constant(newValue, valueType);
             if (selector.Body is MemberExpression memberExpression)
             {
+                memberExpression = Expression.Property(Expression.Constant(t),memberExpression.Member.Name);
                 var assignExpression = Expression.Assign(memberExpression, valueExpress);
                 var lambda =
-                   Expression.Lambda<Func<T, TProperty>>(assignExpression, selector.Parameters);
-                lambda.Compile()(t);
+                   Expression.Lambda<Func<TProperty>>(assignExpression);
+                lambda.Compile()();
             }
         }
 
+        public static void SetPropertyValue<T, TProperty>(this T t, string propertyName, TProperty newValue)
+        {
+            var valueType = typeof(TProperty);
+            var valueExpress = Expression.Constant(newValue, valueType);
+            MemberExpression member = Expression.Property(Expression.Constant(t), propertyName);
+            var assignExpression = Expression.Assign(member, valueExpress);
+            var lambda =
+               Expression.Lambda<Func<TProperty>>(assignExpression);
+            lambda.Compile()();
+        }
         /// <summary>
         /// 
         /// </summary>
