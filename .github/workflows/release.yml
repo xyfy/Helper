@@ -1,0 +1,30 @@
+name: releas master
+# Create dev doc index,send to ALGOLIA
+# auto create when doc changed
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: git pull
+      uses: actions/checkout@v3
+    - run: git checkout master
+    - name: setting dotnet
+      uses: actions/setup-dotnet@v3.0.3
+      with:
+        dotnet-version: |
+          6.0.x
+    - name: build
+      run: dotnet build
+    - name: Publish NuGet
+      uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+          # Filepath of the project to be packaged, relative to root of repository
+          PROJECT_FILE_PATH: Xyfy.Helper/Xyfy.Helper.csproj
+          # Configuration to build and package
+          BUILD_CONFIGURATION: Release
+          PACKAGE_NAME: Xyfy.Helper
