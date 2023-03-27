@@ -5,6 +5,7 @@
 		<LangVersion>10.0</LangVersion>
 		<RepositoryUrl>https://github.com/xyfy/Helper</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<Version>$([System.DateTime]::Now.ToString("yyyy.MM.dd.HHmmss"))</Version>
 		<PackageVersion>$([System.DateTime]::Now.ToString("yyyy.MM.dd.HHmmss"))</PackageVersion>
 	</PropertyGroup>
 	<ItemGroup>
